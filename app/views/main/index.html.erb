@@ -1,0 +1,24 @@
+<% if @user.present? %>
+<div class="card-deck">
+<% @user.each do |user| %>
+  <div class="card">
+    <div class="card-img-top">
+      <%= image_tag(user.avatar, height: "200px") %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= user.name %></h5>
+      <h6 class="card-title">@<%= user.username %></h5>
+      <p class="card-text">
+        <%= user.bio %>
+      </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated <%= user.updated_at %> </small>
+    </div>
+  </div>
+<% end %>
+</div>
+<% else %>
+  <h1> Create a new user to start</h1>
+<% end %>
+
