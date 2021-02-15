@@ -2,16 +2,22 @@
   <picture>
     <%= image_tag(@user.avatar, height: "200px", style: 'border-radius: 50%') %>
   </picture>
-    <h2><%= @user.name %></h2>
-    <h3>@<%= @user.username %></h3>
-    <p><%= @user.bio %></p>
+  <h2><%= @user.name %></h2>
+  <h3>@<%= @user.username %></h3>
+  <p><%= @user.bio %></p>
   <% if @user.twitter.present? %>
-    <button type="button" class="btn btn-primary btn-lg btn-block">Twitter</button>
+    <%= link_to @user.twitter do %>
+      <button type="button" class="btn btn-info btn-lg btn-block">Twitter</button>
+    <% end %>
   <% end %>
   <% if @user.facebook.present? %>
-    <button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
+    <%= link_to @user.facebook do %>
+      <button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
+    <% end %>
   <% end %>
   <% if @user.instagram.present? %>
-    <button type="button" class="btn btn-primary btn-lg btn-block">Instagram</button>
+    <%= link_to @user.instagram do %>
+      <button type="button" class="btn btn-danger btn-lg btn-block">Instagram</button>
+    <% end %>
   <% end %>
 </div>
