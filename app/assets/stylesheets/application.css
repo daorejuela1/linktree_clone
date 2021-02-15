@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+body { padding-bottom: 70px; }
 .navbar {
 	height: 70px;
 }
@@ -29,7 +30,18 @@ footer {
 	text-align: center;
 	color: white;
 }
-.card-deck{
-		padding-top: 20px;
-		text-align: center;
+.grid-container{
+	padding-top: 20px;
+	text-align: center;
+	justify-content: space-between;
+	align-items: center;
+}
+.card {
+	display: inline-flex;
+	width: 400px;
+	margin: 10px;
+}
+#user_profile {
+	padding-top: 20px;
+	text-align: center;
 }

@@ -1,23 +1,35 @@
 <% if @user.present? %>
-<div class="card-deck">
-<% @user.each do |user| %>
-  <div class="card">
-    <div class="card-img-top">
-      <%= image_tag(user.avatar, height: "200px") %>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title"><%= user.name %></h5>
-      <h6 class="card-title">@<%= user.username %></h5>
-      <p class="card-text">
-        <%= user.bio %>
-      </p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated <%= user.updated_at %> </small>
-    </div>
+  <div class="grid-container">
+    <% @user.each do |user| %>
+      <%= link_to user.username do %>
+        <div class="card">
+          <div class="card-img-top">
+            <%= image_tag(user.avatar, height: "200px") %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= user.name %></h5>
+            <h6 class="card-title">@<%= user.username %></h5>
+            <p class="card-text">
+            <%= user.bio %>
+            </p>
+          </div>
+        <% end %>
+        <div class="card-footer">
+          <small class="text-muted">Last updated <%= user.updated_at %> </small>
+        </div>
+        <div>
+          <%= link_to user_edit_url(user.username) do %>
+            <button type="button" class="btn btn-info">Edit</button>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to user_delete_url(user.username) do %>
+            <button type="button" class="btn btn-danger">Delete</button>
+          <% end %>
+        </div>
+        </div>
+      <% end %>
   </div>
-<% end %>
-</div>
 <% else %>
   <h1> Create a new user to start</h1>
 <% end %>

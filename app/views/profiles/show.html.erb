@@ -1,0 +1,17 @@
+<div  id="user_profile">
+  <picture>
+    <%= image_tag(@user.avatar, height: "200px", style: 'border-radius: 50%') %>
+  </picture>
+    <h2><%= @user.name %></h2>
+    <h3>@<%= @user.username %></h3>
+    <p><%= @user.bio %></p>
+  <% if @user.twitter.present? %>
+    <button type="button" class="btn btn-primary btn-lg btn-block">Twitter</button>
+  <% end %>
+  <% if @user.facebook.present? %>
+    <button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
+  <% end %>
+  <% if @user.instagram.present? %>
+    <button type="button" class="btn btn-primary btn-lg btn-block">Instagram</button>
+  <% end %>
+</div>
