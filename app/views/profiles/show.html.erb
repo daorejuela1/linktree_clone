@@ -5,19 +5,9 @@
   <h2><%= @user.name %></h2>
   <h3>@<%= @user.username %></h3>
   <p><%= @user.bio %></p>
-  <% if @user.twitter.present? %>
-    <%= link_to @user.twitter do %>
-      <button type="button" class="btn btn-info btn-lg btn-block">Twitter</button>
-    <% end %>
-  <% end %>
-  <% if @user.facebook.present? %>
-    <%= link_to @user.facebook do %>
-      <button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
-    <% end %>
-  <% end %>
-  <% if @user.instagram.present? %>
-    <%= link_to @user.instagram do %>
-      <button type="button" class="btn btn-danger btn-lg btn-block">Instagram</button>
+  <% @user.networks.each_with_index do |social_network, index| %>
+    <%= link_to social_network.link, target: :_blank do %>
+      <button type="button" class="btn btn-<%= @color[index % 7] %> btn-lg btn-block social-btn"><%= String(social_network.link.match("(?!(\/{2}|www\.))[a-z]*(\.com)")).capitalize %></button>
     <% end %>
   <% end %>
 </div>
