@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def new
     @user = User.new()
+    @user.networks.build
   end
 
   def create
@@ -14,6 +15,7 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:username])
+    @color = ["info", "primary", "secondary", "danger", "warning", "light", "dark"]
   end
 
   def edit
@@ -31,7 +33,7 @@ class ProfilesController < ApplicationController
 
   def delete
     @user = User.find_by(username: params[:username])
-    if @user.delete
+    if @user.destroy
       redirect_to root_path, notice: "Deleted succesfully"
     end
   end
@@ -39,6 +41,6 @@ class ProfilesController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :username, :avatar, :bio, :twitter, :facebook, :instagram)
+    params.require(:user).permit(:name, :username, :avatar, :bio, networks_attributes: [:id, :link, :_destroy])
   end
 end

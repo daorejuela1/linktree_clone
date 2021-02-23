@@ -28,16 +28,20 @@
     <small id="Username" class="form-text text-muted">Tell us more about yourself.</small>
   </div>
   <div class="form-group">
-    <%= form.label :twitter %>
-    <%= form.text_field :twitter , class: "form-control", placeholder: "https://twitter.com/JohnSmith14" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :facebook %>
-    <%= form.text_field :facebook , class: "form-control", placeholder: "https://www.facebook.com/JohnSmith14" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :instagram %>
-    <%= form.text_field :instagram , class: "form-control", placeholder: "https://www.instagram.com/daorejuela1/" %>
+    <%= form.fields_for :networks do |builder|%>
+      <%= render partial: "network_fields", locals: {builder: builder} %>
+    <% end %>
+    <%= link_to_add_fields "Add Network link", form, :networks %> 
   </div>
   <%= form.submit "Save", class: "btn btn-primary" %>
 <% end %>
+    <script>
+      $('form').on('click', '.add_fields', function(event) {
+              console.log('clicked!')
+              var regexp, time;
+              time = new Date().getTime();
+              regexp = new RegExp($(this).data('id'), 'g');
+              $(this).before($(this).data('fields').replace(regexp, time));
+              return event.preventDefault();
+            });
+    </script>

@@ -45,3 +45,15 @@ footer {
 	padding-top: 20px;
 	text-align: center;
 }
+.social-btn {
+	margin: 10px;
+}
+.edit-btn {
+	margin: 2px;
+}
+
+.delete-label
+{
+	color: red;
+	font-size: 30px;
+}
