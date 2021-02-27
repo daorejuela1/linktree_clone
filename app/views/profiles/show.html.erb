@@ -7,7 +7,9 @@
   <p><%= @user.bio %></p>
   <% @user.networks.each_with_index do |social_network, index| %>
     <%= link_to social_network.link, target: :_blank do %>
-      <button type="button" class="btn btn-<%= @color[index % 7] %> btn-lg btn-block social-btn"><%= String(social_network.link.match("(?!(\/{2}|www\.))[a-z]*(\.com)")).capitalize %></button>
+      <button type="button" class="btn btn-<%= @color[index % 7] %> btn-lg btn-block social-btn">
+        <%= social_network.name %>
+      </button>
     <% end %>
   <% end %>
 </div>
