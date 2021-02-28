@@ -4,6 +4,6 @@ class Network < ApplicationRecord
   before_update :create_and_update_name
 
   def create_and_update_name
-    self.name = String(self.link.match("(?!(\/{2}|www\.))[a-z]*(\.com)")).capitalize
+    self.name = String(link.match("(?!(\/{2}|www\.))[a-z]*(\.com)")).capitalize
   end
 end

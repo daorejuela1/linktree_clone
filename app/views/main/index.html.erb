@@ -4,7 +4,7 @@
       <%= link_to user.username do %>
         <div class="card">
           <div class="card-img-top">
-            <%= image_tag(user.avatar, height: "200px") %>
+            <%= image_tag user.avatar.variant(resize_to_fill: [100, 100, sharpen: { radius: 50, sigma: 5 }]).processed %>
           </div>
           <div class="card-body">
             <h5 class="card-title"><%= user.name %></h5>
@@ -31,6 +31,6 @@
       <% end %>
   </div>
 <% else %>
-  <h1> Create a new user to start</h1>
+  <h1 class='display-3 text-center'> Create a new user to start</h1>
 <% end %>
 
