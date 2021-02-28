@@ -1,7 +1,9 @@
 <div  id="user_profile">
+  <%= link_to @user.avatar do %>
   <picture>
-    <%= image_tag(@user.avatar, height: "200px", style: 'border-radius: 50%') %>
+    <%= image_tag @user.avatar.variant(resize_to_fill: [400, 400], vignette: 0).processed %>
   </picture>
+<% end %>
   <h2><%= @user.name %></h2>
   <h3>@<%= @user.username %></h3>
   <p><%= @user.bio %></p>
