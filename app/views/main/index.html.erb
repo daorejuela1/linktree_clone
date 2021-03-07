@@ -4,29 +4,31 @@
       <%= link_to user.username do %>
         <div class="card">
           <div class="card-img-top">
-            <%= image_tag user.avatar.variant(resize_to_fill: [100, 100, sharpen: { radius: 50, sigma: 5 }]).processed %>
+            <%= image_tag user.avatar.variant(resize_to_fill: [100, 100, sharpen: { radius: 50, sigma: 5 }]).processed if user.avatar.attached? %>
           </div>
           <div class="card-body">
             <h5 class="card-title"><%= user.name %></h5>
             <h6 class="card-title">@<%= user.username %></h5>
-            <p class="card-text">
-            <%= user.bio %>
-            </p>
           </div>
         <% end %>
+        <p class="card-text">
+        <%= user.description %>
+        </p>
         <div class="card-footer">
           <small class="text-muted">Last updated <%= user.updated_at %> </small>
         </div>
+        <% if user_signed_in? && (user.username == current_user.username) %>
         <div>
-          <%= link_to user_edit_url(user.username) do %>
+          <%= link_to edit_user_registration_path do %>
             <button type="button" class="btn btn-info edit-btn">Edit</button>
           <% end %>
         </div>
         <div>
-          <%= link_to user_delete_url(user.username) do %>
+          <%= link_to user_registration_path, data: { confirm: "Are you sure?" }, method: :delete do %>
             <button type="button" class="btn btn-danger edit-btn">Delete</button>
           <% end %>
         </div>
+      <% end %>
         </div>
       <% end %>
   </div>

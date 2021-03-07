@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!, only: [:delete, :edit, :update]
+
   def new
     @user = User.new
     @user.networks.build
@@ -18,12 +20,9 @@ class ProfilesController < ApplicationController
     @color = %w[info primary secondary danger warning light dark]
   end
 
-  def edit
-    @user = User.find_by(username: params[:username])
-  end
-
   def update
-    @user = User.find_by(username: params[:username])
+    #@user = User.find_by(username: params[:username])
+    @user = current_user
     if @user.update(user_params)
       redirect_to root_path, notice: 'Updated succesfully'
     else
@@ -32,13 +31,14 @@ class ProfilesController < ApplicationController
   end
 
   def delete
-    @user = User.find_by(username: params[:username])
+    #@user = User.find_by(username: params[:username])
+    @user = current_user
     redirect_to root_path, notice: 'Deleted succesfully' if @user.destroy
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :avatar, :bio, networks_attributes: %i[id link _destroy])
+    params.require(:user).permit(:name, :username, :avatar, :description, networks_attributes: %i[id link _destroy])
   end
 end

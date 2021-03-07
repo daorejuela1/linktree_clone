@@ -6,7 +6,7 @@
 <% end %>
   <h2><%= @user.name %></h2>
   <h3>@<%= @user.username %></h3>
-  <p><%= @user.bio %></p>
+  <p><%= @user.description %></p>
   <% @user.networks.each_with_index do |social_network, index| %>
     <%= link_to social_network.link, target: :_blank do %>
       <button type="button" class="btn btn-<%= @color[index % 7] %> btn-lg btn-block social-btn">

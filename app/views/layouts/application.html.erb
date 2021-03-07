@@ -9,10 +9,20 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-    <%= render partial: "shared/navbar" %>
+  <%= render partial: "shared/navbar" %>
   <body>
+    <% if alert.present? %>
+      <div class="alert alert-warning" role="alert">
+        <p><%= alert %> </p>
+      </div>
+    <% end %>
+    <% if notice.present? %>
+      <div class="alert alert-info" role="alert">
+        <p><%= notice %> </p>
+      </div>
+    <% end %>
     <div class="container">
-        <%= yield %>
+      <%= yield %>
     </div>
     <%= render partial: "shared/footer" %>
   </body>
