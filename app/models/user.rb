@@ -16,9 +16,14 @@ class User < ApplicationRecord
                                                       }, allow_destroy: true
   validates :name, presence: true,length: { maximum: 50 }
   validates :username, presence: true, uniqueness: {case_sensitive: false}, format: { with: VALID_USERNAME_REGEX }
-  validates :email, presence: true, uniqueness: {case_sensitive: false}, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
+  validates :email, presence: true, uniqueness: {case_sensitive: false}, email: true
+  validate :validate_email_layers
 
   private
+
+  def validate_email_layers
+    errors.add(:email, 'Invalid Email') if !Truemail.valid?(email)
+  end
 
   def add_default_image
     if !avatar.attached?
