@@ -1,0 +1,10 @@
+<tr>
+  <td>
+    <%= builder.hidden_field :_destroy %>
+    <%= link_to 'Delete', '#', class: 'remove_record btn btn-danger' %>
+  </td>
+  <td>
+  <%= builder.label :link %>
+  <%= builder.text_field :link, class: "form-control", placeholder: "https://socialnet.com/johnsmit" %>
+  </td>
+</tr>

@@ -1,0 +1,10 @@
+<tr>
+  <td>
+    <%= builder.checkbox :_destroy, as: :hidden %>
+    <%= link_to 'Delete', '#', class: 'remove_record' %>
+  </td>
+  <td>
+  <%= builder.label :link %>
+  <%= builder.text_field :link, class: "form-control", placeholder: "https://socialnet.com/johnsmit" %>
+  </td>
+</tr>

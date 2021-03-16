@@ -1,2 +1,2 @@
-<h1>Editing user<h1>
-    <%= render partial: "form", locals: {user: @user, url: user_edit_url(@user.username)} %>
+<h1 class="display-3 text-center">Editing user<h1>
+    <%= render partial: "form", locals: {user: @user, networks: @user.networks, url: user_edit_url(@user.username)} %>

@@ -1,23 +1,17 @@
 <div  id="user_profile">
+  <%= link_to @user.avatar do %>
   <picture>
-    <%= image_tag(@user.avatar, height: "200px", style: 'border-radius: 50%') %>
+    <%= image_tag @user.avatar.variant(resize_to_fill: [400, 400], vignette: 0).processed %>
   </picture>
+<% end %>
   <h2><%= @user.name %></h2>
   <h3>@<%= @user.username %></h3>
-  <p><%= @user.bio %></p>
-  <% if @user.twitter.present? %>
-    <%= link_to @user.twitter do %>
-      <button type="button" class="btn btn-info btn-lg btn-block">Twitter</button>
-    <% end %>
-  <% end %>
-  <% if @user.facebook.present? %>
-    <%= link_to @user.facebook do %>
-      <button type="button" class="btn btn-primary btn-lg btn-block">Facebook</button>
-    <% end %>
-  <% end %>
-  <% if @user.instagram.present? %>
-    <%= link_to @user.instagram do %>
-      <button type="button" class="btn btn-danger btn-lg btn-block">Instagram</button>
+  <p><%= @user.description %></p>
+  <% @user.networks.each_with_index do |social_network, index| %>
+    <%= link_to social_network.link, target: :_blank do %>
+      <button type="button" class="btn btn-<%= @color[index % 7] %> btn-lg btn-block social-btn">
+        <%= social_network.name %>
+      </button>
     <% end %>
   <% end %>
 </div>

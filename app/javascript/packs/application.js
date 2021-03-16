@@ -11,3 +11,6 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("jquery")
+require("forms/nested_formlogic")
+require("forms/preview_image")

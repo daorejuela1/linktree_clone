@@ -1,0 +1,54 @@
+<%= form_with url: url, model: user do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <% user.errors.full_messages.each do |message| %>
+        <div><%= message %> </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "John Smith" %>
+    <small id="Username" class="form-text text-muted">What's your name?.</small>
+  </div>
+  <div class="form-group">
+    <%= form.label :username %>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <%= form.text_field :username, class: "form-control", placeholder: "johnsmit" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :avatar %>
+    <img>
+    <%= form.file_field :avatar, accept: 'image/png, image/jpeg', class: "form-control file_upload" %>
+    <small id="Username" class="form-text text-muted">Upload a picture that everybody can love.</small>
+  </div>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description , class: "form-control", placeholder: "An awesome guy with Mr. smith hobbies" %>
+    <small id="Username" class="form-text text-muted">Tell us more about yourself.</small>
+  </div>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th class="display-4">Social Network links</th>
+      </tr>
+      <tbody class="fields">
+        <%= form.fields_for :networks do |builder|%>
+          <%= render partial: "network_fields", locals: {builder: builder} %>
+        <% end %>
+      </tbody>
+  </table>
+  <table class='table'>
+    <tbody>
+      <%= link_to_add_fields "Add Network link", form, :networks, class: "btn-primary btn add_new_field" %> 
+    </tbody>
+  </table>
+  <%= form.submit "Save", class: "btn btn-success btn-lg btn-block" %>
+
+<% end %>
